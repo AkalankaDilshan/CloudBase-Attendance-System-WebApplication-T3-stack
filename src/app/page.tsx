@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 "use client"
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import Webcam from 'react-webcam'
 
 type Props = object
@@ -8,10 +8,24 @@ type Props = object
 const HomePage = (props: Props) => {
   const webcamRef = useRef<Webcam>(null);
 
+  //state 
+  const [mirrored, setMirrored] = useState<boolean>(false);
   return (
-    <div>
-      <Webcam />
+
+    // left side
+    <div className="flex h-screen">
+      <div className="relative">
+        <div className="relative h-screen w-full">
+          <Webcam ref={webcamRef}
+            mirrored={mirrored}
+            className='h-full w-full object-contain p-2'
+          />
+        </div>
+      </div>
     </div>
+
+    //Right side
+
   )
 }
 
