@@ -7,7 +7,7 @@ import { Camera, FlipHorizontal, PersonStandingIcon, Video } from 'lucide-react'
 import React, { useRef, useState } from 'react'
 import Webcam from 'react-webcam'
 import { toast } from "sonner"
-
+import BounceLoader from "react-spinners/BounceLoader";
 
 type Props = object
 
@@ -78,7 +78,7 @@ const HomePage = (props: Props) => {
               size={'icon'}
               onClick={toggleAutoRecord}
             >
-              {autoRecordEnabled ? <Ring: <PersonStandingIcon />}
+              {autoRecordEnabled ? <BounceLoader color="#65c696" size={20} /> : <PersonStandingIcon />}
             </Button>
           </div>
 
