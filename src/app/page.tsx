@@ -78,7 +78,7 @@ const HomePage = (props: Props) => {
               size={'icon'}
               onClick={toggleAutoRecord}
             >
-              {autoRecordEnabled ? <BounceLoader color="#65c696" size={20} /> : <PersonStandingIcon />}
+              {autoRecordEnabled ? <BounceLoader color="#ffffff" size={25} /> : <PersonStandingIcon />}
             </Button>
           </div>
 
