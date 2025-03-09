@@ -3,7 +3,7 @@
 import { ModeToggle } from '@/components/theme-toggle '
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
-import { FlipHorizontal } from 'lucide-react'
+import { Camera, FlipHorizontal, Video } from 'lucide-react'
 import React, { useRef, useState } from 'react'
 import Webcam from 'react-webcam'
 
@@ -14,6 +14,7 @@ const HomePage = (props: Props) => {
 
   //state 
   const [mirrored, setMirrored] = useState<boolean>(false);
+  const [isRecording, SetisRecording] = useState<boolean>(false);
   return (
 
 
@@ -43,14 +44,29 @@ const HomePage = (props: Props) => {
             >
               <FlipHorizontal />
             </Button>
-            <Separator />
+
+            <Separator className='my-2' />
           </div>
 
           {/* Middle section  */}
           <div className="flex flex-col gap-2">
-            <Separator />
+            <Separator className='my-2' />
 
-            <Separator />
+            <Button
+              variant={'outline'} size={'icon'}
+              onClick={userPromptScreenshot}
+            >
+              <Camera />
+            </Button>
+
+            <Button
+              variant={isRecording ? 'destructive' : 'outline'} size={'icon'}
+              onClick={userPromptRecord}
+            >
+              <Video />
+            </Button>
+
+            <Separator className='my-2' />
           </div>
 
 
@@ -64,6 +80,23 @@ const HomePage = (props: Props) => {
       </div>
     </div >
   )
+
+  //handler function
+  function userPromptScreenshot() {
+
+    //take screenshot 
+
+    //save it to download
+  }
+
+  function userPromptRecord() {
+
+    //check if isRecording
+    //then stop isRecording
+    // and save to download
+
+
+  }
 }
 
 export default HomePage
