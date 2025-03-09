@@ -3,9 +3,11 @@
 import { ModeToggle } from '@/components/theme-toggle '
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
-import { Camera, FlipHorizontal, Video } from 'lucide-react'
+import { Camera, FlipHorizontal, PersonStandingIcon, Video } from 'lucide-react'
 import React, { useRef, useState } from 'react'
 import Webcam from 'react-webcam'
+import { toast } from "sonner"
+
 
 type Props = object
 
@@ -15,6 +17,7 @@ const HomePage = (props: Props) => {
   //state 
   const [mirrored, setMirrored] = useState<boolean>(false);
   const [isRecording, SetisRecording] = useState<boolean>(false);
+  const [autoRecordEnabled, setautoRecordEnabled] = useState<boolean>(false);
   return (
 
 
@@ -37,7 +40,8 @@ const HomePage = (props: Props) => {
             <ModeToggle />
 
             <Button
-              variant={'outline'} size={'icon'}
+              variant={'outline'}
+              size={'icon'}
               onClick={() => {
                 setMirrored((prev) => !prev)
               }}
@@ -53,20 +57,29 @@ const HomePage = (props: Props) => {
             <Separator className='my-2' />
 
             <Button
-              variant={'outline'} size={'icon'}
+              variant={'outline'}
+              size={'icon'}
               onClick={userPromptScreenshot}
             >
               <Camera />
             </Button>
 
             <Button
-              variant={isRecording ? 'destructive' : 'outline'} size={'icon'}
+              variant={isRecording ? 'destructive' : 'outline'}
+              size={'icon'}
               onClick={userPromptRecord}
             >
               <Video />
             </Button>
 
             <Separator className='my-2' />
+            <Button
+              variant={autoRecordEnabled ? 'destructive' : 'outline'}
+              size={'icon'}
+              onClick={toggleAutoRecord}
+            >
+              {autoRecordEnabled ? "Show animation" : <PersonStandingIcon />}
+            </Button>
           </div>
 
 
@@ -96,6 +109,22 @@ const HomePage = (props: Props) => {
     // and save to download
 
 
+  }
+
+  function toggleAutoRecord() {
+    if (autoRecordEnabled) {
+      setautoRecordEnabled(false);
+
+      //show toast to user to notify the change
+      toast("Auto record enable")
+
+
+    }
+    else {
+      setautoRecordEnabled(true);
+      //show toast
+      toast("Auto record disable")
+    }
   }
 }
 
