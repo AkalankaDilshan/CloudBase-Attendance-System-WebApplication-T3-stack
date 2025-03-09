@@ -78,7 +78,7 @@ const HomePage = (props: Props) => {
               size={'icon'}
               onClick={toggleAutoRecord}
             >
-              {autoRecordEnabled ? "Show animation" : <PersonStandingIcon />}
+              {autoRecordEnabled ? <Ring: <PersonStandingIcon />}
             </Button>
           </div>
 
@@ -116,14 +116,14 @@ const HomePage = (props: Props) => {
       setautoRecordEnabled(false);
 
       //show toast to user to notify the change
-      toast("Auto record enable")
+      toast("Auto record disable")
 
 
     }
     else {
       setautoRecordEnabled(true);
       //show toast
-      toast("Auto record disable")
+      toast("Auto record enabled")
     }
   }
 }
