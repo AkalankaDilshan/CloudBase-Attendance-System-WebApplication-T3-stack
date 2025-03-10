@@ -21,6 +21,7 @@ const HomePage = (props: Props) => {
   const [mirrored, setMirrored] = useState<boolean>(false);
   const [isRecording, SetisRecording] = useState<boolean>(false);
   const [autoRecordEnabled, setautoRecordEnabled] = useState<boolean>(false);
+  const [volume, setVolume] = useState(0.5);
   return (
 
 
@@ -97,7 +98,12 @@ const HomePage = (props: Props) => {
                 </Button>
               </PopoverTrigger>
               <PopoverContent>
-                <Slider max={1} min={0} step={0.1} />
+                <Slider max={1} min={0} step={0.1} defaultValue={[volume]}
+                  onValueCommit={(val) => {
+                    setVolume(val[0]);
+                    beep(val[0]);
+                  }}
+                />
               </PopoverContent>
             </Popover>
 
