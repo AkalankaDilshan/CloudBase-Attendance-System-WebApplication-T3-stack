@@ -11,6 +11,7 @@ import BounceLoader from "react-spinners/BounceLoader";
 import { Popover, PopoverContent } from '@/components/ui/popover'
 import { PopoverTrigger } from '@radix-ui/react-popover'
 import { Slider } from '@/components/ui/slider'
+import { beep } from '../../utils/audio'
 
 type Props = object
 
