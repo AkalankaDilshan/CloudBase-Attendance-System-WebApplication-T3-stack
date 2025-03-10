@@ -85,8 +85,9 @@ const HomePage = (props: Props) => {
 
           {/* Bottom section  */}
           <div className="flex flex-col gap-2">
+            <Separator className='my-2' />
 
-            <Separator />
+
           </div>
         </div>
 
