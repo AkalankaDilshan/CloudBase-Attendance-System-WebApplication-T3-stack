@@ -3,11 +3,14 @@
 import { ModeToggle } from '@/components/theme-toggle '
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
-import { Camera, FlipHorizontal, PersonStandingIcon, Video } from 'lucide-react'
+import { Camera, FlipHorizontal, PersonStandingIcon, Video, Volume2 } from 'lucide-react'
 import React, { useRef, useState } from 'react'
 import Webcam from 'react-webcam'
 import { toast } from "sonner"
 import BounceLoader from "react-spinners/BounceLoader";
+import { Popover, PopoverContent } from '@/components/ui/popover'
+import { PopoverTrigger } from '@radix-ui/react-popover'
+import { Slider } from '@/components/ui/slider'
 
 type Props = object
 
@@ -87,6 +90,16 @@ const HomePage = (props: Props) => {
           <div className="flex flex-col gap-2">
             <Separator className='my-2' />
 
+            <Popover>
+              <PopoverTrigger>
+                <Button variant={'outline'} size={'icon'}>
+                  <Volume2 />
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent>
+                <Slider max={1} min={0} step={0.1} />
+              </PopoverContent>
+            </Popover>
 
           </div>
         </div>
