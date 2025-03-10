@@ -93,7 +93,7 @@ const HomePage = (props: Props) => {
             <Separator className='my-2' />
 
             <Popover>
-              <PopoverTrigger>
+              <PopoverTrigger asChild>
                 <Button variant={'outline'} size={'icon'}>
                   <Volume2 />
                 </Button>
