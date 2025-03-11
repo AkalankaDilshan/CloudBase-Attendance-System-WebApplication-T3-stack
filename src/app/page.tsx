@@ -7,16 +7,17 @@ import { Camera, FlipHorizontal, MoonIcon, PersonStanding, PersonStandingIcon, S
 import React, { useEffect, useRef, useState } from 'react'
 import Webcam from 'react-webcam'
 import { toast } from "sonner"
-import BounceLoader from "react-spinners/BounceLoader";
-import CircleLoader from "react-spinners/CircleLoader";
+import * as cocossd from '@tensorflow-models/coco-ssd'
+import { ObjectDetection } from '@tensorflow-models/coco-ssd'
+import "@tensorflow/tfjs-backend-cpu"
+import "@tensorflow/tfjs-backend-webgl"
 import { Popover, PopoverContent } from '@/components/ui/popover'
 import { PopoverTrigger } from '@radix-ui/react-popover'
 import { Slider } from '@/components/ui/slider'
 import { beep } from '../../utils/audio'
-import * as cocossd from '@tensorflow-models/coco-ssd'
-import "@tensorflow/tfjs-backend-webgl"
-import "@tensorflow/tfjs-backend-cpu"
-import { ObjectDetection } from '@tensorflow-models/coco-ssd'
+import BounceLoader from "react-spinners/BounceLoader";
+import CircleLoader from "react-spinners/CircleLoader";
+
 
 type Props = object
 
@@ -40,8 +41,9 @@ const HomePage = (props: Props) => {
   // set it in a state varaible
   async function initModel() {
     const loadeModel: ObjectDetection = await cocossd.load({
-      base: 'mobilenet_v2'
+      base: "mobilenet_v2"
     });
+    setModel(loadeModel);
   }
 
   useEffect(() => {
@@ -142,8 +144,8 @@ const HomePage = (props: Props) => {
           <RenderFeatureHighlightsSection />
         </div>
       </div>
-      {loading && <div className='z-50 absolute w-full h-full flex item-center justify-center bg-primary-foreground'>
-        Getting things read ... <CircleLoader size={30} color='#ff0000' />
+      {loading && <div className='z-50  px-4 absolute w-full h-full flex items-center justify-center bg-primary-foreground'>
+        Getting things read ...   <CircleLoader size={30} color='#ff0000' />
       </div>}
     </div >
   )
