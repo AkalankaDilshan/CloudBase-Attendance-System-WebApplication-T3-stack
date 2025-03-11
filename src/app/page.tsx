@@ -8,6 +8,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import Webcam from 'react-webcam'
 import { toast } from "sonner"
 import BounceLoader from "react-spinners/BounceLoader";
+import CircleLoader from "react-spinners/CircleLoader";
 import { Popover, PopoverContent } from '@/components/ui/popover'
 import { PopoverTrigger } from '@radix-ui/react-popover'
 import { Slider } from '@/components/ui/slider'
@@ -27,18 +28,29 @@ const HomePage = (props: Props) => {
   const [isRecording, SetisRecording] = useState<boolean>(false);
   const [autoRecordEnabled, setautoRecordEnabled] = useState<boolean>(false);
   const [volume, setVolume] = useState(0.5);
-
+  const [model, setModel] = useState<ObjectDetection>();
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
     initModel();
   }, [])
 
   //load models
   // set it in a state varaible
   async function initModel() {
-    const loadeModel: ObjectDetection = await cocossd.load(base: mobil);
-    set
+    const loadeModel: ObjectDetection = await cocossd.load({
+      base: 'mobilenet_v2'
+    });
   }
+
+  useEffect(() => {
+    if (model) {
+      setLoading(false);
+    }
+  }, [model])
+
+
   return (
 
 
@@ -129,8 +141,10 @@ const HomePage = (props: Props) => {
         <div className='h-full flex-1 py-4 px-2 overflow-y-scroll'>
           <RenderFeatureHighlightsSection />
         </div>
-
       </div>
+      {loading && <div className='z-50 absolute w-full h-full flex item-center justify-center bg-primary'>
+        Getting things read ... <CircleLoader size={30} color='#ff0000' />
+      </div>}
     </div >
   )
 
