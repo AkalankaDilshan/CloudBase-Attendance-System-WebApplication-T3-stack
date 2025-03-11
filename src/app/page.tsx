@@ -4,7 +4,7 @@ import { ModeToggle } from '@/components/theme-toggle '
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import { Camera, FlipHorizontal, MoonIcon, PersonStanding, PersonStandingIcon, SunIcon, Video, Volume2 } from 'lucide-react'
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Webcam from 'react-webcam'
 import { toast } from "sonner"
 import BounceLoader from "react-spinners/BounceLoader";
@@ -12,9 +12,10 @@ import { Popover, PopoverContent } from '@/components/ui/popover'
 import { PopoverTrigger } from '@radix-ui/react-popover'
 import { Slider } from '@/components/ui/slider'
 import { beep } from '../../utils/audio'
-import * as cocossf from '@tensorflow-models/coco-ssd'
+import * as cocossd from '@tensorflow-models/coco-ssd'
 import "@tensorflow/tfjs-backend-webgl"
 import "@tensorflow/tfjs-backend-cpu"
+import { ObjectDetection } from '@tensorflow-models/coco-ssd'
 
 type Props = object
 
@@ -26,6 +27,18 @@ const HomePage = (props: Props) => {
   const [isRecording, SetisRecording] = useState<boolean>(false);
   const [autoRecordEnabled, setautoRecordEnabled] = useState<boolean>(false);
   const [volume, setVolume] = useState(0.5);
+
+
+  useEffect(() => {
+    initModel();
+  }, [])
+
+  //load models
+  // set it in a state varaible
+  async function initModel() {
+    const loadeModel: ObjectDetection = await cocossd.load(base: mobil);
+    set
+  }
   return (
 
 
