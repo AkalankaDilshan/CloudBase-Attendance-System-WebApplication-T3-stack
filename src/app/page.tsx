@@ -142,7 +142,7 @@ const HomePage = (props: Props) => {
           <RenderFeatureHighlightsSection />
         </div>
       </div>
-      {loading && <div className='z-50 absolute w-full h-full flex item-center justify-center bg-primary'>
+      {loading && <div className='z-50 absolute w-full h-full flex item-center justify-center bg-primary-foreground'>
         Getting things read ... <CircleLoader size={30} color='#ff0000' />
       </div>}
     </div >
