@@ -60,7 +60,8 @@ const HomePage = (props: Props) => {
       && webcamRef.current.video
       && webcamRef.current.video.readyState === 4
     ) {
-      const prediction = await model.detect(webcamRef.current.video)
+      const predictions = await model.detect(webcamRef.current.video)
+      console.log(predictions)
     }
   }
 
