@@ -20,6 +20,7 @@ import CircleLoader from "react-spinners/CircleLoader";
 
 
 type Props = object
+// let interval = null
 
 const HomePage = (props: Props) => {
   const webcamRef = useRef<Webcam>(null);
@@ -52,6 +53,24 @@ const HomePage = (props: Props) => {
     }
   }, [model])
 
+  async function runPrediction() {
+    if (
+      model
+      && webcamRef.current
+      && webcamRef.current.video
+      && webcamRef.current.video.readyState === 4
+    ) {
+      const prediction = await model.detect(webcamRef.current.video)
+    }
+  }
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      runPrediction();
+    }, 1000)
+
+    return () => clearInterval(interval)
+  }, [webcamRef.current, model])
 
   return (
 
