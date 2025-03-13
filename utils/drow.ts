@@ -1,37 +1,33 @@
-import { DetectedObject } from '@tensorflow-models/coco-ssd'
+import { DetectedObject } from '@tensorflow-models/coco-ssd';
 
-export function drawOnCavas(
+export function drawOnCanvas(
      mirrored: boolean,
      predictions: DetectedObject[],
      ctx: CanvasRenderingContext2D | null | undefined
 ) {
+     if (!ctx) return; // Early return if ctx is null or undefined
+
      predictions.forEach((detectedObject: DetectedObject) => {
           const { class: name, bbox, score } = detectedObject;
           const [x, y, width, height] = bbox;
 
-          if (ctx && score > 50) {
+          if (score > 0.5) { // Assuming score is between 0 and 1
                ctx.beginPath();
 
-               //string for Canvas 
+               // Adjust x-coordinate if mirrored
+               const adjustedX = mirrored ? ctx.canvas.width - x - width : x;
 
-               ctx.fillStyle = name === 'person' ? '#FF0F0F' : '00B612';
+               // Draw rectangle
+               ctx.fillStyle = name === 'person' ? '#FF0F0F' : '#00B612';
                ctx.globalAlpha = 0.4;
-
-               ctx.rect(x, y, width, height, 8)
-
-               //draw strole or fill
+               ctx.rect(adjustedX, y, width, height);
                ctx.fill();
 
-               //text styling
+               // Draw text
                ctx.font = "12px Courier New";
-               ctx.fillStyle = 'black'
+               ctx.fillStyle = 'black';
                ctx.globalAlpha = 1;
-
-
-
-
+               ctx.fillText(`${name} (${Math.round(score * 100)}%)`, adjustedX, y > 10 ? y - 5 : y + 10);
           }
-     })
-
-
+     });
 }
