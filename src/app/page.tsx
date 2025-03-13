@@ -63,7 +63,7 @@ const HomePage = (props: Props) => {
     ) {
       const predictions = await model.detect(webcamRef.current.video)
       // console.log(predictions)
-      // resizeCanvas(canvasRef, webcamRef);
+      resizeCanvas(canvasRef, webcamRef);
     }
   }
 
@@ -298,9 +298,11 @@ const HomePage = (props: Props) => {
 
 export default HomePage
 
-function resizeCanvas(canvasRef: React.RefObject<HTMLCanvasElement>, webcamRef: React.RefObject<HTMLVideoElement>) {
+function resizeCanvas(
+  canvasRef: React.RefObject<HTMLCanvasElement | null>,
+  webcamRef: React.RefObject<Webcam | null>) {
   const canvas = canvasRef.current;
-  const video = webcamRef.current;
+  const video = webcamRef.current?.video;
 
   if ((canvas && video)) {
     const { videoWidth, videoHeight } = video;
