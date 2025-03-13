@@ -24,6 +24,7 @@ type Props = object
 
 const HomePage = (props: Props) => {
   const webcamRef = useRef<Webcam>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
 
   //state 
   const [mirrored, setMirrored] = useState<boolean>(false);
@@ -61,7 +62,8 @@ const HomePage = (props: Props) => {
       && webcamRef.current.video.readyState === 4
     ) {
       const predictions = await model.detect(webcamRef.current.video)
-      console.log(predictions)
+      // console.log(predictions)
+      // resizeCanvas(canvasRef, webcamRef);
     }
   }
 
@@ -295,3 +297,9 @@ const HomePage = (props: Props) => {
 }
 
 export default HomePage
+
+function resizeCanvas(canvasRef: React.RefObject<HTMLCanvasElement>, webcamRef: React.RefObject<HTMLWebViewElement>) {
+  const canvas = canvasRef.current;
+  const video = webcamRef.current?.video;
+
+}
