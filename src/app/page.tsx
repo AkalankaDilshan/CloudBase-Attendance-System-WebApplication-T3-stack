@@ -63,7 +63,7 @@ const HomePage = (props: Props) => {
       && webcamRef.current.video.readyState === 4
     ) {
       const predictions: DetectedObject[] = await model.detect(webcamRef.current.video)
-      // console.log(predictions)
+      console.log(predictions)
       resizeCanvas(canvasRef, webcamRef);
       drawOnCanvas(mirrored, predictions, canvasRef.current?.getContext('2d'));
     }
@@ -72,7 +72,7 @@ const HomePage = (props: Props) => {
   useEffect(() => {
     const interval = setInterval(() => {
       runPrediction();
-    }, 10000)
+    }, 100)
 
     return () => clearInterval(interval)
   }, [webcamRef.current, model])
