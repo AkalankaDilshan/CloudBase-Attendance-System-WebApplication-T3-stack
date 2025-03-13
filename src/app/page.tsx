@@ -17,6 +17,7 @@ import { Slider } from '@/components/ui/slider'
 import { beep } from '../../utils/audio'
 import BounceLoader from "react-spinners/BounceLoader";
 import CircleLoader from "react-spinners/CircleLoader";
+import { drawOnCanvas } from '../../utils/drow'
 
 
 type Props = object
@@ -64,14 +65,14 @@ const HomePage = (props: Props) => {
       const predictions: DetectedObject[] = await model.detect(webcamRef.current.video)
       // console.log(predictions)
       resizeCanvas(canvasRef, webcamRef);
-      drawOnCavas(mirrored, predictions, canvasRef.current?.getContext('2d'));
+      drawOnCanvas(mirrored, predictions, canvasRef.current?.getContext('2d'));
     }
   }
 
   useEffect(() => {
     const interval = setInterval(() => {
       runPrediction();
-    }, 100)
+    }, 10000)
 
     return () => clearInterval(interval)
   }, [webcamRef.current, model])
