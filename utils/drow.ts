@@ -9,7 +9,7 @@ export function drawOnCavas(
           const { class: name, bbox, score } = detectedObject;
           const [x, y, width, height] = bbox;
 
-          if (ctx) {
+          if (ctx && score > 50) {
                ctx.beginPath();
 
                //string for Canvas 
@@ -17,7 +17,7 @@ export function drawOnCavas(
                ctx.fillStyle = name === 'person' ? '#FF0F0F' : '00B612';
                ctx.globalAlpha = 0.4;
 
-               ctx.roundRect(x, y, width, height, 8)
+               ctx.rect(x, y, width, height, 8)
 
                //draw strole or fill
                ctx.fill();
@@ -27,7 +27,7 @@ export function drawOnCavas(
                ctx.fillStyle = 'black'
                ctx.globalAlpha = 1;
 
-               console.log(score);
+
 
 
           }
