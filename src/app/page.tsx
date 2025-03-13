@@ -298,7 +298,7 @@ const HomePage = (props: Props) => {
 
 export default HomePage
 
-function resizeCanvas(canvasRef: React.RefObject<HTMLCanvasElement>, webcamRef: React.RefObject<HTMLWebViewElement>) {
+function resizeCanvas(canvasRef: React.RefObject<HTMLCanvasElement>, webcamRef: React.RefObject<HTMLVideoElement>) {
   const canvas = canvasRef.current;
   const video = webcamRef.current;
 
