@@ -300,6 +300,12 @@ export default HomePage
 
 function resizeCanvas(canvasRef: React.RefObject<HTMLCanvasElement>, webcamRef: React.RefObject<HTMLWebViewElement>) {
   const canvas = canvasRef.current;
-  const video = webcamRef.current?.video;
+  const video = webcamRef.current;
+
+  if ((canvas && video)) {
+    const { videoWidth, videoHeight } = video;
+    canvas.width = videoWidth;
+    canvas.height = videoHeight;
+  }
 
 }
