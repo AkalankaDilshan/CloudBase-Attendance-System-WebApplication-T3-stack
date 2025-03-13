@@ -8,7 +8,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import Webcam from 'react-webcam'
 import { toast } from "sonner"
 import * as cocossd from '@tensorflow-models/coco-ssd'
-import { ObjectDetection } from '@tensorflow-models/coco-ssd'
+import { DetectedObject, ObjectDetection } from '@tensorflow-models/coco-ssd'
 import "@tensorflow/tfjs-backend-cpu"
 import "@tensorflow/tfjs-backend-webgl"
 import { Popover, PopoverContent } from '@/components/ui/popover'
@@ -61,7 +61,7 @@ const HomePage = (props: Props) => {
       && webcamRef.current.video
       && webcamRef.current.video.readyState === 4
     ) {
-      const predictions = await model.detect(webcamRef.current.video)
+      const predictions: DetectedObject[] = await model.detect(webcamRef.current.video)
       // console.log(predictions)
       resizeCanvas(canvasRef, webcamRef);
       drawOnCavas(mirrored, predictions, canvasRef.current?.getContext('2d'));
