@@ -71,7 +71,7 @@ const HomePage = (props: Props) => {
   useEffect(() => {
     const interval = setInterval(() => {
       runPrediction();
-    }, 1000)
+    }, 100)
 
     return () => clearInterval(interval)
   }, [webcamRef.current, model])
