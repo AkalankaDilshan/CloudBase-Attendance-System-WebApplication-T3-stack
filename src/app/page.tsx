@@ -64,6 +64,7 @@ const HomePage = (props: Props) => {
       const predictions = await model.detect(webcamRef.current.video)
       // console.log(predictions)
       resizeCanvas(canvasRef, webcamRef);
+      drawOnCavas(mirrored, predictions, canvasRef.current?.getContext('2d'));
     }
   }
 
@@ -310,4 +311,8 @@ function resizeCanvas(
     canvas.height = videoHeight;
   }
 
+}
+
+function drawOnCavas(mirrored: boolean, predictions: cocossd.DetectedObject[], arg2: CanvasRenderingContext2D | null | undefined) {
+  throw new Error('Function not implemented.')
 }
