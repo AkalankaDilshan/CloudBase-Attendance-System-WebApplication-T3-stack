@@ -314,6 +314,6 @@ function resizeCanvas(
 
 }
 
-function drawOnCavas(mirrored: boolean, predictions: cocossd.DetectedObject[], arg2: CanvasRenderingContext2D | null | undefined) {
-  throw new Error('Function not implemented.')
-}
+// function drawOnCavas(mirrored: boolean, predictions: cocossd.DetectedObject[], arg2: CanvasRenderingContext2D | null | undefined) {
+//   throw new Error('Function not implemented.')
+// }
