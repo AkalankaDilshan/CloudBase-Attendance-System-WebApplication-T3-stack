@@ -1,33 +1,35 @@
-import { DetectedObject } from '@tensorflow-models/coco-ssd';
+/* eslint-disable @typescript-eslint/no-unused-expressions */
+import { DetectedObject } from "@tensorflow-models/coco-ssd";
 
+// mirrored, predictions, canvasRef.current?.getContext('2d')
 export function drawOnCanvas(
      mirrored: boolean,
      predictions: DetectedObject[],
      ctx: CanvasRenderingContext2D | null | undefined
 ) {
-     if (ctx)  // Early return if ctx is null or undefined
+     predictions.forEach((detectedObject: DetectedObject) => {
+          const { class: name, bbox } = detectedObject;
+          const [x, y, width, height] = bbox;
 
-          predictions.forEach((detectedObject: DetectedObject) => {
-               const { class: name, bbox, score } = detectedObject;
-               const [x, y, width, height] = bbox;
+          if (ctx) {
+               ctx.beginPath();
 
-               if (score > 0.5) { // Assuming score is between 0 and 1
-                    ctx.beginPath();
+               // styling
+               ctx.fillStyle = name === "person" ? "#FF0F0F" : "#00B612";
+               ctx.globalAlpha = 0.4;
 
-                    // Adjust x-coordinate if mirrored
-                    const adjustedX = mirrored ? ctx.canvas.width - x - width : x;
+               mirrored ? ctx.roundRect(ctx.canvas.width - x, y, -width, height, 8) : ctx.roundRect(x, y, width, height, 8);
 
-                    // Draw rectangle
-                    ctx.fillStyle = name === 'person' ? '#FF0F0F' : '#00B612';
-                    ctx.globalAlpha = 0.4;
-                    ctx.rect(adjustedX, y, width, height);
-                    ctx.fill();
+               // draw stroke or fill
+               ctx.fill();
 
-                    // Draw text
-                    ctx.font = "12px Courier New";
-                    ctx.fillStyle = 'black';
-                    ctx.globalAlpha = 1;
-                    ctx.fillText(`${name} (${Math.round(score * 100)}%)`, adjustedX, y > 10 ? y - 5 : y + 10);
-               }
-          });
+               // text styling
+               ctx.font = "12px Courier New";
+               ctx.fillStyle = 'black'
+               ctx.globalAlpha = 1;
+               mirrored
+                    ? ctx.fillText(name, ctx.canvas.width - x - width + 10, y + 20)
+                    : ctx.fillText(name, x + 10, y + 20);
+          }
+     });
 }
