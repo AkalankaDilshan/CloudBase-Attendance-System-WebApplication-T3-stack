@@ -70,12 +70,14 @@ const HomePage = (props: Props) => {
   }
 
   useEffect(() => {
+    if (!model) return;
+    setLoading(false);
     const interval = setInterval(() => {
       runPrediction();
     }, 100)
 
     return () => clearInterval(interval)
-  }, [webcamRef.current, model])
+  }, [model]);
 
   return (
 
@@ -88,6 +90,7 @@ const HomePage = (props: Props) => {
             mirrored={mirrored}
             className='h-full w-full object-contain p-2'
           />
+          <canvas ref={canvasRef} width={640} height={480} />
         </div>
       </div>
 
