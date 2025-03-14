@@ -65,7 +65,11 @@ const HomePage = (props: Props) => {
       const predictions: DetectedObject[] = await model.detect(webcamRef.current.video)
       console.log(predictions)
       resizeCanvas(canvasRef, webcamRef);
-      drawOnCanvas(mirrored, predictions, canvasRef.current?.getContext('2d'));
+      const ctx = canvasRef.current?.getContext("2d");
+      if (ctx) {
+        //ctx.clearRect(0, 0, canvasRef.current?.width, canvasRef.current?.height);
+        drawOnCanvas(mirrored, predictions, ctx);
+      }
     }
   }
 
