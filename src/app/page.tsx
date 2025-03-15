@@ -19,6 +19,7 @@ import BounceLoader from "react-spinners/BounceLoader";
 import CircleLoader from "react-spinners/CircleLoader";
 import { drawOnCanvas } from '../../utils/drow'
 import RightSide from '@/components/Right-side/right-side'
+import LoadingScreen from '@/components/loading-screen/LoadingScreen'
 
 
 type Props = object
@@ -100,9 +101,7 @@ const HomePage = (props: Props) => {
       {/* Right side */}
       <RightSide />
 
-      {loading && <div className='z-50  px-4 absolute w-full h-full flex items-center justify-center bg-primary-foreground'>
-        Getting things read ...   <CircleLoader size={30} color='#ff0000' />
-      </div>}
+      <LoadingScreen loading={loading} />
     </div >
   )
 
