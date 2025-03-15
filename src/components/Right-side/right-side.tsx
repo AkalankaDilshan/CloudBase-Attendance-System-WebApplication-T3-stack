@@ -10,11 +10,22 @@ import { beep } from "../../../utils/audio";
 import { useState } from "react";
 import { toast } from "sonner";
 
-const RightSide = () => {
-     const [mirrored, setMirrored] = useState(false);
-     const [isRecording, setIsRecording] = useState(false);
-     const [autoRecordEnabled, setautoRecordEnabled] = useState<boolean>(false);
-     const [volume, setVolume] = useState(0.5);
+type RightSideProps = {
+     mirrored: boolean;
+     setMirrored: React.Dispatch<React.SetStateAction<boolean>>;
+     isRecording: boolean;
+     setIsRecording: React.Dispatch<React.SetStateAction<boolean>>;
+     autoRecordEnabled: boolean;
+     setautoRecordEnabled: React.Dispatch<React.SetStateAction<boolean>>;
+     volume: number;
+     setVolume: React.Dispatch<React.SetStateAction<number>>;
+};
+
+const RightSide = ({ mirrored, setMirrored, isRecording, setIsRecording, autoRecordEnabled, setautoRecordEnabled, volume, setVolume }: RightSideProps) => {
+     // const [mirrored, setMirrored] = useState(false);
+     // const [isRecording, setIsRecording] = useState(false);
+     // const [autoRecordEnabled, setautoRecordEnabled] = useState<boolean>(false);
+     // const [volume, setVolume] = useState(0.5);
 
 
      return (

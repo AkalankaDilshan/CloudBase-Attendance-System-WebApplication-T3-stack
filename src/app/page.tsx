@@ -99,7 +99,12 @@ const HomePage = (props: Props) => {
       </div>
 
       {/* Right side */}
-      <RightSide />
+      <RightSide
+        mirrored={mirrored} setMirrored={setMirrored}
+        isRecording={isRecording} setIsRecording={SetisRecording}
+        autoRecordEnabled={autoRecordEnabled} setautoRecordEnabled={setautoRecordEnabled}
+        volume={volume} setVolume={setVolume}
+      />
 
       <LoadingScreen loading={loading} />
     </div >
