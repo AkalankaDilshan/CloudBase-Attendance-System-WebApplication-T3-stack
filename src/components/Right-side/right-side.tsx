@@ -17,15 +17,15 @@ type RightSideProps = {
      setIsRecording: React.Dispatch<React.SetStateAction<boolean>>;
      autoRecordEnabled: boolean;
      setautoRecordEnabled: React.Dispatch<React.SetStateAction<boolean>>;
-     volume: number;
-     setVolume: React.Dispatch<React.SetStateAction<number>>;
+     // volume: number;
+     // setVolume: React.Dispatch<React.SetStateAction<number>>;
 };
 
-const RightSide = ({ mirrored, setMirrored, isRecording, setIsRecording, autoRecordEnabled, setautoRecordEnabled, volume, setVolume }: RightSideProps) => {
+const RightSide = ({ mirrored, setMirrored, isRecording, setIsRecording, autoRecordEnabled, setautoRecordEnabled }: RightSideProps) => {
      // const [mirrored, setMirrored] = useState(false);
      // const [isRecording, setIsRecording] = useState(false);
      // const [autoRecordEnabled, setautoRecordEnabled] = useState<boolean>(false);
-     // const [volume, setVolume] = useState(0.5);
+     const [volume, setVolume] = useState(0.5);
 
 
      return (
@@ -90,12 +90,19 @@ const RightSide = ({ mirrored, setMirrored, isRecording, setIsRecording, autoRec
                                    </Button>
                               </PopoverTrigger>
                               <PopoverContent>
-                                   <Slider max={1} min={0} step={0.1} defaultValue={[0.5]}
-                                        onValueCommit={(val) => {
-                                             setVolume(val[0]);
-                                             beep(val[0]);
-                                        }}
-                                   />
+                                   {/* <Slider
+                                        max={1}
+                                        min={0}
+                                        step={0.1}
+                                        defaultValue={[volume]}
+                                   onValueCommit={(val) => {
+                                        console.log("Volume changed to:", val[0]); // Debugging step
+                                        setVolume(val[0]);
+                                        beep(val[0]);
+                                   }}
+                                   /> */}
+                                   <Slider defaultValue={[33]} max={100} step={1} />
+
                               </PopoverContent>
                          </Popover>
                     </div>
