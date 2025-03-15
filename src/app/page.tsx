@@ -92,9 +92,9 @@ const HomePage = (props: Props) => {
         <div className="relative h-screen w-full">
           <Webcam ref={webcamRef}
             mirrored={mirrored}
-            className='h-full w-full object-contain p-2'
+            className="h-full w-full object-contain"
           />
-          <canvas ref={canvasRef} width={640} height={480} />
+          <canvas ref={canvasRef} />
         </div>
       </div>
 

@@ -79,7 +79,7 @@ const RightSide = ({ mirrored, setMirrored, isRecording, setIsRecording, autoRec
                     </div>
 
 
-                    {/* Bottom section  */}
+                    {/* Volume Bottom section  */}
                     <div className="flex flex-col gap-2">
                          <Separator className='my-2' />
 
@@ -90,7 +90,7 @@ const RightSide = ({ mirrored, setMirrored, isRecording, setIsRecording, autoRec
                                    </Button>
                               </PopoverTrigger>
                               <PopoverContent>
-                                   <Slider max={1} min={0} step={0.1} defaultValue={[volume]}
+                                   <Slider max={1} min={0} step={0.1} defaultValue={[0.5]}
                                         onValueCommit={(val) => {
                                              setVolume(val[0]);
                                              beep(val[0]);
