@@ -19,7 +19,7 @@ export function drawOnCanvas(
           ctx.lineWidth = 2;
 
           ctx.beginPath();
-          mirrored ? ctx.strokeRect(ctx.canvas.width - x - width, y, width, height, 8) : ctx.strokeRect(x, y, width, height, 8);
+          mirrored ? ctx.strokeRect(ctx.canvas.width - x - width, y, width, height) : ctx.strokeRect(x, y, width, height);
 
           // draw stroke or fill
           ctx.stroke();
