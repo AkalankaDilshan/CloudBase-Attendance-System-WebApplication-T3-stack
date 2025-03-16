@@ -14,15 +14,15 @@ export function drawOnCanvas(
           const [x, y, width, height] = bbox;
 
           // styling
-          ctx.fillStyle = name === "person" ? "blue" : "green";
+          ctx.strokeStyle = name === "person" ? "#FF0000" : "green";
           ctx.globalAlpha = 0.8;
           ctx.lineWidth = 2;
 
           ctx.beginPath();
-          mirrored ? ctx.roundRect(ctx.canvas.width - x - width, y, width, height, 8) : ctx.roundRect(x, y, width, height, 8);
+          mirrored ? ctx.strokeRect(ctx.canvas.width - x - width, y, width, height, 8) : ctx.strokeRect(x, y, width, height, 8);
 
           // draw stroke or fill
-          ctx.fill();
+          ctx.stroke();
 
           // Reset globalAlpha for text
           ctx.globalAlpha = 1;
